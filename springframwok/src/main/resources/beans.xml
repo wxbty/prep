@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!--    <bean id="user" class="ink.zfei.spring.ioc.User" >-->
+    <!--        <property name="name" value="lisi"></property>-->
+    <!--    </bean>-->
+    <bean id="deviceA" class="ink.zfei.spring.Device" init-method="init">
+        <property name="password" value="123456"></property>
+    </bean>
+
+     <bean class="ink.zfei.spring.listener.PrintAfterRefreshEventListener"></bean>
+    <!-- <bean class="ink.zfei.spring.ioc.TestBeanPostProcessor"></bean>-->
+    <!--    <bean  class="ink.zfei.spring.ioc.MapperProxyBeanfactoryProcessor"></bean>-->
+    <!--    <bean id="aa" class="ink.zfei.spring.ioc.MapperProxyFactoryBean"></bean>-->
+    <bean id="mom" class="ink.zfei.spring.aop.CountMethodConsumTime"></bean>
+    <bean class="ink.zfei.spring.ioc.Instable"></bean>
+    <bean class="demo.SpringBeanUtil"></bean>
+<!--    <bean  class="org.springframework.context.annotation.AspectJAutoProxyRegistrar"></bean>-->
+    <context:annotation-config />
+
+    <!--面向切面编程-->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash;定义切面&ndash;&gt;-->
+<!--        <aop:aspect ref="mom">-->
+<!--            &lt;!&ndash;定义切点&ndash;&gt;-->
+<!--            <aop:pointcut id="action" expression="execution(* *.*(..))"/>-->
+<!--            &lt;!&ndash; 声明前置通知 (在切点方法被执行前调用)&ndash;&gt;-->
+<!--            <aop:before method="buy" pointcut-ref="action"/>-->
+<!--            &lt;!&ndash; 声明后置通知 (在切点方法被执行后调用)&ndash;&gt;-->
+<!--            <aop:after method="clear" pointcut-ref="action"/>-->
+<!--        </aop:aspect>-->
+<!--    </aop:config>-->
+    <!-- 2. JdbcTemplate工具类实例 -->
+
+</beans>
