@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -32,10 +33,9 @@ public class IndexController     {
 
     @ResponseBody
     @RequestMapping(value = "/queryStatus",produces = "text/plain;charset=UTF-8")
-    public String queryStatus(Integer deviceId,String name) throws CloneNotSupportedException {
+    public String queryStatus(Integer deviceId, String name) throws CloneNotSupportedException {
 
         String tmp = null;
-
         //先从redis 查，如果不存在，则从数据库查，并塞入redis
 //        RMap<Integer, Device> rmap = redissonClient.getMap(DEMO_PRIFX);
 //        Device dev = rmap.get(deviceId);

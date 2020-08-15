@@ -1,7 +1,10 @@
 package ink.zfei.bean;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 
+@Component
 public class Device implements Serializable {
 
     private int id;

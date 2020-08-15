@@ -2,6 +2,7 @@ package ink.zfei.spring;
 
 import demo.BeanAquire;
 import demo.SpringBeanUtil;
+import ink.zfei.spring.aop.CountMethodConsumTime;
 import ink.zfei.spring.ioc.User;
 import ink.zfei.spring.listener.PrintEvent;
 import org.springframework.beans.BeansException;
@@ -80,8 +81,11 @@ public class Device implements InitializingBean, ApplicationContextAware {
 //        long after = System.currentTimeMillis();
 //        System.out.println("print method consum  time="+(after-befor));
 
-      String[]  beans   = applicationContext.getBeanDefinitionNames();
-        Arrays.asList(beans).stream().forEach(System.out::print);
+        String uid = CountMethodConsumTime.pubUid.get();
+        System.out.println(uid);
+
+//      String[]  beans   = applicationContext.getBeanDefinitionNames();
+//        Arrays.asList(beans).stream().forEach(System.out::print);
     }
 
 
@@ -95,7 +99,8 @@ public class Device implements InitializingBean, ApplicationContextAware {
 //        Device device = (Device) clazz.newInstance();
 //        System.out.println(device);
 
-        ApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml") ;
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("beans.xml") ;
+        ctx.refresh();
 //        User user = (User) ctx.getBean("user");
 //        System.out.println(user);
 //
@@ -106,9 +111,9 @@ public class Device implements InitializingBean, ApplicationContextAware {
 //        System.out.println(deviceMapper.queryStatus(20));
         Device device = (Device) ctx.getBean("deviceA");
         device.print();
-        BeanAquire beanAquire  = new BeanAquire();
-        beanAquire.print();
-        ctx.publishEvent(new PrintEvent(beanAquire));
+//        BeanAquire beanAquire  = new BeanAquire();
+//        beanAquire.print();
+//        ctx.publishEvent(new PrintEvent(beanAquire));
 
     }
 

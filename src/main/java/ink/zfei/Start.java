@@ -1,10 +1,13 @@
 package ink.zfei;
 
+import ink.zfei.bean.Device;
 import ink.zfei.controller.IndexController;
+import ink.zfei.mapper.DzpActivity;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.*;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
@@ -16,15 +19,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@EnableWebMvc
+//@EnableWebMvc
 //@EnableAspectJAutoProxy
-@EnableTransactionManagement
+//@EnableTransactionManagement
+@Import(Device.class)
+@ImportResource(locations = "xxxx.xml")
 public class Start {
 
 
     public static void main(String[] args) throws IllegalAccessException, InstantiationException, InvocationTargetException, NoSuchMethodException {
-//        SpringApplication.run(Start.class);
+        SpringApplication.run(Start.class);
         System.out.println(11111);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext();
 //        IndexController index = new IndexController();
 //        Class obj = IndexController.class;
 //        Constructor<?>[] ctos = obj.getDeclaredConstructors();
@@ -66,12 +72,15 @@ public class Start {
 //        String[] pas = parametes.split("&");
 //
 //
-//
-//
 //        Object resul = method.invoke(handleController, pas);
 
 
     }
 
+    @ConditionalOnNotWebApplication
+    @Bean
+    DzpActivity dzpActivity() {
+        return new DzpActivity();
+    }
 
 }
